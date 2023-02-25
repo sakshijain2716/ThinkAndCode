@@ -1,0 +1,43 @@
+class Solution{
+  public:
+    
+   string longestCommonPrefix (string arr[], int N)
+    {
+        // your code here
+        int min=INT_MAX , ind;
+        for(int i=0;i<N;i++)   //finding min length string
+        {
+            if(arr[i].size()<min)
+            {
+                min=arr[i].size();
+                ind=i;
+            }
+        }
+        // min common part ki length h
+        int i=0,j;
+        while(i<N)
+        {
+            j=0;
+            while(j<min && i!=ind)       //finding length of common prefix among all
+            {
+                if(arr[i][j]!=arr[ind][j])     //mismatch occurs
+                {
+                    min = j;     //new length jitne me ab check krna hai common
+                    i=-1;
+                    break;
+                }
+                j++;
+            }
+            i++;
+        }
+        if(min==0)         //no common
+        return "-1";
+        
+        string ans="";
+        for(int i=0;i<min;i++)
+        {
+            ans = ans+arr[0][i];
+        }
+        return ans;
+    }
+};
