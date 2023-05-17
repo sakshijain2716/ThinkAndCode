@@ -1,0 +1,33 @@
+//each word is given its index after it
+//"is2 sentence4 This1 a3"
+
+class Solution {
+public:
+    string sortSentence(string s) {
+        int n=s.size();
+        // vector<string>temp(10);
+        map<int,string>mp;
+        int i=0;
+        while(i<n)
+        {
+            string str="";
+            while((s[i]>='A' && s[i]<='Z') || (s[i]>='a' && s[i]<='z'))
+            {
+            str = str+s[i];
+            i++;
+            } 
+            mp[s[i]-49]=str;      //storing word with respect to its index
+            i=i+2;
+        }
+        string ans="";
+        int m=mp.size();
+        for(auto it:mp)
+        {
+            if(it.first < m-1)
+            ans = ans+mp[it.first]+" ";
+            else
+            ans = ans+mp[it.first];
+        }
+        return ans;
+    }
+};
