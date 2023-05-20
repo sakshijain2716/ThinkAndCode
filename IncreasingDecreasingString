@@ -1,0 +1,41 @@
+//1370 leetcode
+
+class Solution {
+public:
+    string sortString(string s) {
+        int n = s.size();
+        string res="";
+        map<char,int>mp;
+        for(auto it:s)
+        {
+            mp[it]++;
+        }
+        
+        int i=0;
+        while(i<n)
+        {
+            for(auto it:mp)    //in ascending order
+            {
+                if(it.second!=0)
+                {
+                    res = res+it.first;
+                    mp[it.first]--;
+                    i++;
+                }
+                
+            }
+
+            for(auto it=mp.rbegin();it!=mp.rend();it++)    //in reverse order  rbegin() points to last operator
+            {
+                if(it->second!=0)
+                {
+                    res=res+it->first;
+                    mp[it->first]--;
+                    i++;
+                }
+                
+            }
+        }
+        return res;
+    }
+};
