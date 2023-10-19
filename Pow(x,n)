@@ -1,0 +1,26 @@
+class Solution {
+public:
+    double myPow(double x, int n) {
+        double ans = 1.0;
+        long pwer = n;
+        if(pwer<0) 
+        pwer = pwer*(-1);
+
+        while(pwer)
+        {
+            if(pwer%2==0)        // 2^4 = (2*2)^2 => (2^2)^2
+            {
+                x = x*x;
+                pwer = pwer/2;
+            }
+            else            //2^5 = 2 * 2^4   here x remains same only n changes and ans gets multiplied by x
+            {
+                ans = ans*x;
+                pwer = pwer-1;
+            }
+        }
+        if(n<0)            //x^-1 = 1/x;
+        return double(1.0)/double(ans);
+        return ans;
+    }
+};
